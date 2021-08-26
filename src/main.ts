@@ -1,5 +1,30 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+import { CrudConfigService } from '@nestjsx/crud';
+
+CrudConfigService.load({
+  query: {
+    limit: 25,
+    cache: 2000,
+  },
+  params: {
+    id: {
+      field: 'id',
+      type: 'uuid',
+      primary: true,
+    },
+  },
+  routes: {
+    updateOneBase: {
+      allowParamsOverride: true,
+    },
+    deleteOneBase: {
+      returnDeleted: true,
+    },
+  },
+});
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {

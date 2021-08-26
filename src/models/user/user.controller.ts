@@ -1,6 +1,6 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
+import { Crud, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserDto } from './dto/user.dto';
 import { User } from './user.entity';
@@ -12,8 +12,8 @@ import { UserService } from './user.service';
     type: UserDto,
   },
 })
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+// @ApiBearerAuth()
+// @UseGuards(JwtAuthGuard)
 @Controller('api/users')
 export class UserController implements CrudController<User> {
   constructor(public service: UserService) {}

@@ -1,5 +1,12 @@
 import { UserInterface } from 'src/common/interfaces/user.interface';
-import { Entity, Column, PrimaryGeneratedColumn, Generated } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Generated,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 // import { uuid } from 'uuidv4';
 @Entity('users')
 export class User implements UserInterface {
@@ -24,4 +31,12 @@ export class User implements UserInterface {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @Column({ nullable: true })
+  @CreateDateColumn({ type: 'timestamp', nullable: true })
+  created_at?: Date;
+
+  @Column({ nullable: true })
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
+  updated_at?: Date;
 }
