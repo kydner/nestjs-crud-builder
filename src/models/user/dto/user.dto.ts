@@ -32,10 +32,10 @@ export class UserDto implements UserInterface {
   isActive: boolean;
 
   @IsOptional()
-  created_at: Date;
+  readonly created_at: Date;
 
   @IsOptional()
-  updated_at: Date;
+  readonly updated_at: Date;
 
   @BeforeInsert() async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
